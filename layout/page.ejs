@@ -1,0 +1,12 @@
+<% if (is_page() == 0){ %>
+  <%- partial('_partial/article', {post: page, index: false}) %>
+<% } %>
+<% if (is_page() && page.type === 'about'){ %>
+  <%- partial('_partial/article', {post: page, index: false}) %>
+<% } %>
+<% if (is_page() && page.type === 'changelog'){ %>
+  <%- partial('_partial/article', {post: page, index: false}) %>
+<% } %>
+<% if (is_page() && page.type === 'tags'){ %>
+  <%- partial('_partial/tags', {post: page, index: false}) %>
+<% } %>
