@@ -35,6 +35,7 @@ widgets:
 - archive
 - recent_posts
 - about
+- dark_theme
 
 # display widgets at the bottom of index pages (pagination == 2)
 index_widgets:
