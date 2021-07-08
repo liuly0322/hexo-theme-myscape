@@ -3,6 +3,23 @@ DM-grey = #212121
 DM-black = #191919
 DM-font-color = #aaa
 
+#dark-btn
+  border: none
+  background: #f9f9f9
+  border-top-left-radius: 50%
+  border-bottom-left-radius: 50%
+  border-top-right-radius: 0
+  border-bottom-right-radius: 0
+  top: 150px
+  right: -2px
+  width: 40px
+  padding: 12px 15px
+  position: fixed
+  &:before
+    content: "\f185"
+    font-family: font-icon
+    font-size: 14px
+
 .dark-theme
     body
         background-color: DM-black
@@ -49,3 +66,11 @@ DM-font-color = #aaa
                 color: DM-font-color
         .vat
             color: DM-font-color
+    #dark-btn
+        background-color: #252525
+        color: DM-font-color
+        &:before
+            content: '\f186'
+    #banner
+        background: url("images/banner-dark.jpg") center #000
+        background-size: cover
