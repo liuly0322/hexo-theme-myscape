@@ -6,7 +6,14 @@ function refresh() {
             const from = document.getElementById('from-work')
             hitokoto.innerText = data.hitokoto
             from.innerText = data.from
+            sessionStorage.setItem("word", hitokoto.innerText);
+            sessionStorage.setItem("work", from.innerText);
         })
         .catch(console.error)
 };
-refresh()
+for(let i=0;sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined';i++){
+    setTimeout("refresh()", 300);
+    if(i > 3){
+        break;
+    }
+}
