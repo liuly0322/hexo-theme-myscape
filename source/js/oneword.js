@@ -11,10 +11,9 @@ function refresh() {
         })
         .catch(console.error)
 };
-refresh();
-for(let i=0;sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined';i++){
-    setTimeout("refresh()", 300);
-    if(i > 3){
-        break;
-    }
+if(sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined'){
+    refresh();
+} else {
+    document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
+    document.getElementById('from-work').innerText = sessionStorage.getItem("work");
 }
