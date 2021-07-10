@@ -21,9 +21,7 @@ DM-font-color = #aaa
     font-size: 14px
 
 .dark-theme
-    body
-        background-color: DM-black
-    #wrap
+    body,#wrap
         background-color: DM-black
     .widget
         background-color: DM-grey
@@ -32,18 +30,17 @@ DM-font-color = #aaa
         border: 0
         a
             color: DM-font-color
-    .widget-title
-        text-shadow: none
-        color: DM-font-color
     .oneword-refresh
         background-color: DM-black
         color: DM-font-color
-    .article-category,.article-date
+    #dark-btn
+        background-color: #252525
+        color: DM-font-color
+        &:before
+            content: '\f186'
+    .widget-title,.article-category,.article-date,.article-category-link
         text-shadow: none
         color: DM-font-color
-        .article-category-link
-            text-shadow: none
-            color: DM-font-color
     .article-inner,.archive-article-inner
         background-color: DM-grey
         border: 0
@@ -67,17 +64,13 @@ DM-font-color = #aaa
                 color: DM-font-color
         .vat
             color: DM-font-color
-    #dark-btn
-        background-color: #252525
-        color: DM-font-color
-        &:before
-            content: '\f186'
     #banner
         background: url("images/banner-dark.jpg") center #000
         background-size: cover
     #footer
         background: #252525
     .local-search-popup
+        box-shadow: none
         background: DM-grey
         a,#no-result,ul.search-result-list
             color: DM-font-color

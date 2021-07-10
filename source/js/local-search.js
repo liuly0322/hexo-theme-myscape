@@ -269,16 +269,7 @@ $(document).ready(function() {
     // Search function
     function searchFunc() {
       // Start loading animation
-      $('body')
-        .append(`<div id="search-loading-icon">
-              <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-          </div>`)
-        .css('overflow', 'hidden');
-      $('#search-loading-icon').css({
-        margin      : '20% auto 0 auto',
-        'text-align': 'center'
-      });
+      $('body').css('overflow', 'hidden');
       fetchData(proceedSearch);
     }
     input.addEventListener('input', inputEventFunction);  
