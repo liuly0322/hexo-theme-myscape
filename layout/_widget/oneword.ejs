@@ -4,5 +4,11 @@
   <div class="widget">
     <p id="hitokoto">:D 获取中...</p>
     <p style="text-align: right">—— 「<span id="from-work">:D 获取中...</span>」</p>
+    <script>
+      if (sessionStorage.getItem("word") !== null && sessionStorage.getItem("word") !== 'undefined'){
+        document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
+        document.getElementById('from-work').innerText = sessionStorage.getItem("work");
+      }
+    </script>
   </div>
 </div>

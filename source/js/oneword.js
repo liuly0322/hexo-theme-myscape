@@ -11,8 +11,8 @@ function refresh() {
         })
         .catch(console.error)
 };
-if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined'){
+if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined') {
     refresh();
+    document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
+    document.getElementById('from-work').innerText = sessionStorage.getItem("work");
 }
-document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
-document.getElementById('from-work').innerText = sessionStorage.getItem("work");
