@@ -1,5 +1,5 @@
 function refresh() {
-    fetch('https://v1.hitokoto.cn/?c=a&c=b&c=d&c=i&c=k')
+    fetch('https://v1.hitokoto.cn/?c=a&c=b&c=d&c=i&c=k&min_length=0&max_length=30')
         .then(response => response.json())
         .then(data => {
             const hitokoto = document.getElementById('hitokoto')
@@ -13,9 +13,6 @@ function refresh() {
 };
 if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined'){
     refresh();
-}
-for (let i = 0; sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined' && i <=3; i++){
-    setTimeout("refresh()",100 );
 }
 document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
 document.getElementById('from-work').innerText = sessionStorage.getItem("work");
