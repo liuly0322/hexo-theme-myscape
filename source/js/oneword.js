@@ -15,7 +15,7 @@ if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") ==
     refresh();
 }
 for (let i = 0; sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined' && i <=3; i++){
-    setTimeout("refresh()",300 );
+    setTimeout("refresh()",100 );
 }
 document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
 document.getElementById('from-work').innerText = sessionStorage.getItem("work");
