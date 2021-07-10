@@ -11,9 +11,11 @@ function refresh() {
         })
         .catch(console.error)
 };
-if(sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined'){
+if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined'){
     refresh();
-} else {
-    document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
-    document.getElementById('from-work').innerText = sessionStorage.getItem("work");
 }
+for (let i = 0; sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined' && i <=3; i++){
+    setTimeout("refresh()",300 );
+}
+document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
+document.getElementById('from-work').innerText = sessionStorage.getItem("work");
