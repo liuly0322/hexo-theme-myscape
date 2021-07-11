@@ -11,6 +11,7 @@ if(sessionStorage.getItem("hexoTheme") === null){   //第一次访问网站，�
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     if (prefersDarkScheme.matches) {
         sessionStorage.setItem("hexoTheme", "1");
+        changeDarkTheme();
     } else {
         sessionStorage.setItem("hexoTheme", "0");
     }
