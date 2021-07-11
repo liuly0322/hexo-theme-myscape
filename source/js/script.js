@@ -137,3 +137,18 @@
     $container.removeClass('mobile-nav-on');
   });
 })(jQuery);
+
+//scroll
+$(window).scroll(function () {
+  let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+  if(scrollTop > 1000){
+      $("#go-page-front").css({display:"block"})
+  }
+  else{
+      $("#go-page-front").css({display:"none"})
+  }
+});
+
+$("#go-page-front").click(function () {
+  $("html,body").animate({scrollTop:"0px"},500);
+})

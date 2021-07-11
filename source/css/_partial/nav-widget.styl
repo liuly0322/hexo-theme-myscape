@@ -3,7 +3,7 @@ DM-grey = #212121
 DM-black = #191919
 DM-font-color = #aaa
 
-#dark-btn
+#dark-btn,#go-page-front
   border: none
   background: #f9f9f9
   border-top-left-radius: 50%
@@ -13,10 +13,21 @@ DM-font-color = #aaa
   top: 150px
   right: -2px
   width: 40px
-  padding: 12px 15px
   position: fixed
+
+#dark-btn
+  padding: 12px 17px 12px 13px
   &:before
     content: "\f185"
+    font-family: font-icon
+    font-size: 14px
+
+#go-page-front
+  padding: 12px 15px
+  top: 193px
+  display: none
+  &:before
+    content: "\f102"
     font-family: font-icon
     font-size: 14px
 
@@ -33,9 +44,11 @@ DM-font-color = #aaa
     .oneword-refresh
         background-color: DM-black
         color: DM-font-color
-    #dark-btn
+    #dark-btn,#go-page-front
         background-color: #252525
         color: DM-font-color
+    #dark-btn
+        padding: 12px 15px
         &:before
             content: '\f186'
     .widget-title,.article-category,.article-date,.article-category-link
