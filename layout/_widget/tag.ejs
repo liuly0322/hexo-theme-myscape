@@ -3,7 +3,7 @@
     <h3 class="widget-title"><%= __('tags') %></h3>
     <div class="widget">
       <%- list_tags({orderby: 'length', amount: 4, order: -1}) %>
-      <a class="tag-list-link" href="/~liuly0322/tags/">查看全部</a>
+      <a class="tag-list-link" href="<%- url_for('/tags/') %>">查看全部</a>
     </div>
   </div>
 <% } %>

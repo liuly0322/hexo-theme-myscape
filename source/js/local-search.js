@@ -6,7 +6,7 @@ $(document).ready(function() {
     var datas;
     var isXml = true;
     // Search DB path
-    var path = '/~liuly0322/search.xml'
+    var path = '/~liuly0322/blog/search.xml'
     var input = document.getElementById('local-search-input');
     var resultContent = document.getElementById('local-search-result');
   
