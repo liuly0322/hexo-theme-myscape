@@ -1,45 +1,76 @@
-<article id="<%= post.layout %>-<%= post.slug %>" class="h-entry article article-type-<%= post.layout %>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
-    <%- partial('post/category') %>
-  </div>
-  <div class="article-inner">
-    <%- partial('post/gallery') %>
-    <% if (post.link || post.title){ %>
-      <header class="article-header">
-        <%- partial('post/title', {class_name: 'p-name article-title'}) %>
-      </header>
-    <% } %>
-    <div class="e-content article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link){ %>
-          <p class="article-more-link">
-            <a href="<%- url_for(post.path) %>"><%= theme.excerpt_link %></a>
-          </p>
+<% if (index){ %>
+  <article id="<%= post.layout %>-<%= post.slug %>" class="h-entry article article-type-<%= post.layout %>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+      <%- partial('post/gallery') %>
+      <% if (post.link || post.title){ %>
+        <header class="article-header index-header">
+          <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+        </header>
+      <% } %>
+      <div class="article-meta index-meta">
+        <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+        <%- partial('post/category') %>
+      </div>
+      <div class="e-content article-entry" itemprop="articleBody">
+        <% if (post.excerpt){ %>
+          <%- post.excerpt %>
+          <% if (theme.excerpt_link){ %>
+            <p class="article-more-link">
+              <a href="<%- url_for(post.path) %>"><%= theme.excerpt_link %></a>
+            </p>
+          <% } %>
+        <% } else { %>
+          <%- post.content %>
         <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
+      </div>
+      <footer class="article-footer">
+         <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" data-title="<%= post.title %>" class="article-share-link"><%= __('share') %></a>
+         <% if (post.comments && config.disqus_shortname){ %>
+          <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+        <% } %>
+        <% if (post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey ){ %>
+          <a href="<%- url_for(post.path) %>#comments" class="article-comment-link">
+            <span class="post-comments-count valine-comment-count" data-xid="<%- url_for(post.path) %>" itemprop="commentCount"></span>
+            <%= __('comment') %>
+          </a>
+        <% } %>
+        <%- partial('post/tag') %>
+      </footer>
     </div>
-    <footer class="article-footer">
-       <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" data-title="<%= post.title %>" class="article-share-link"><%= __('share') %></a>
-       <% if (post.comments && config.disqus_shortname){ %>
-        <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+  </article>
+<% } else { %>
+  <article id="<%= post.layout %>-<%= post.slug %>" class="h-entry article article-type-<%= post.layout %>" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-meta">
+      <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+      <%- partial('post/category') %>
+    </div>
+    <div class="article-inner">
+      <%- partial('post/gallery') %>
+      <% if (post.link || post.title){ %>
+        <header class="article-header">
+          <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+        </header>
       <% } %>
-      <% if (post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey ){ %>
-        <a href="<%- url_for(post.path) %>#comments" class="article-comment-link">
-          <span class="post-comments-count valine-comment-count" data-xid="<%- url_for(post.path) %>" itemprop="commentCount"></span>
-          <%= __('comment') %>
-        </a>
-      <% } %>
-      <%- partial('post/tag') %>
-    </footer>
-  </div>
-  <% if (!index){ %>
+      <div class="e-content article-entry" itemprop="articleBody">
+        <%- post.content %>
+      </div>
+      <footer class="article-footer">
+         <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" data-title="<%= post.title %>" class="article-share-link"><%= __('share') %></a>
+         <% if (post.comments && config.disqus_shortname){ %>
+          <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comment') %></a>
+        <% } %>
+        <% if (post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey ){ %>
+          <a href="<%- url_for(post.path) %>#comments" class="article-comment-link">
+            <span class="post-comments-count valine-comment-count" data-xid="<%- url_for(post.path) %>" itemprop="commentCount"></span>
+            <%= __('comment') %>
+          </a>
+        <% } %>
+        <%- partial('post/tag') %>
+      </footer>
+    </div>
     <%- partial('post/nav') %>
-  <% } %>
-</article>
+  </article>
+<% } %>
 
 <% if (!index && post.comments && config.disqus_shortname){ %>
 <section id="comments">
