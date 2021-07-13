@@ -35,7 +35,10 @@ body
   clearfix()
   margin: 0 auto
   padding: 0 gutter-width
-  max-width: 1560px
+  max-width: 1200px
+  @media mq-wide
+    max-width: none
+    width: 75%
 
 .inner
   column(columns)
@@ -71,8 +74,6 @@ if sidebar and sidebar isnt bottom
   #main
     @media mq-normal
       column(main-column)
-    @media mq-wide
-      width: calc(96.666666% - 285px);
 
 if sidebar is left
   @media mq-normal
