@@ -12,4 +12,12 @@
 <% } %>
 <% if (is_page() && page.type === 'microblog'){ %>
   <%- partial('_partial/article', {post: page, index: false}) %>
+  <script>
+    const comments = document.querySelector('#comments');
+    const head = document.querySelector('.article-title');
+    comments.classList.add('microblog');
+    head.onclick = function () {
+      comments.classList.toggle('microblog');
+    }
+  </script>
 <% } %>
