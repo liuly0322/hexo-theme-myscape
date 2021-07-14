@@ -88,25 +88,22 @@
   });
 
   // Caption
-  $('.article-entry').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
-
-      var alt = this.alt;
-
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-
-      $(this).wrap('<a href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+  $(window).on("load", function () {
+    $('.article-entry').each(function (i) {
+      $(this).find('img').each(function () {
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a') ||
+        $(this).hasClass('vemoji')) return;
+        var alt = this.alt;
+        $(this).wrap('<a href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function () {
+        $(this).attr('rel', 'article' + i);
+      });
     });
-
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-
-  if ($.fancybox){
-    $('.fancybox').fancybox();
-  }
+    if ($.fancybox) {
+      $('.fancybox').fancybox();
+    }
+  })
 
   // Mobile nav
   var $container = $('#container'),
@@ -152,3 +149,24 @@ $(window).scroll(function () {
 $("#go-page-front").click(function () {
   $("html,body").animate({scrollTop:"0px"},500);
 })
+
+//oneword
+function refresh() {
+  fetch('https://v1.hitokoto.cn/?c=a&c=b&c=d&c=i&c=k&min_length=0&max_length=30')
+      .then(response => response.json())
+      .then(data => {
+          const hitokoto = document.getElementById('hitokoto')
+          const from = document.getElementById('from-work')
+          hitokoto.innerText = data.hitokoto
+          from.innerText = data.from
+          sessionStorage.setItem("word", hitokoto.innerText);
+          sessionStorage.setItem("work", from.innerText);
+      })
+      .catch(console.error)
+};
+
+if (sessionStorage.getItem("word") === null || sessionStorage.getItem("word") === 'undefined') {
+  refresh();
+  document.getElementById('hitokoto').innerText = sessionStorage.getItem("word");
+  document.getElementById('from-work').innerText = sessionStorage.getItem("work");
+}
