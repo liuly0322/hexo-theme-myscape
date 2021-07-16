@@ -5,6 +5,7 @@ menu:
   归档: /archives
   关于: /about
   微博: /microblog
+rss: /atom.xml
 banner: "images/banner.jpg"
 
 # Content

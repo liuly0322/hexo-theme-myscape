@@ -9,12 +9,9 @@
     <% if (site.tags.length){ %>
     <br>
     <hr>
-    <div class="tags">
-      <%- list_tags({orderby: 'length', order: -1}) %>
+    <div class="widget tagcloud">
+      <%- tagcloud() %>
     </div>
 <% } %>
   </div>
-  <% if (!index){ %>
-    <%- partial('post/nav') %>
-  <% } %>
 </article>

@@ -51,7 +51,7 @@
     $('.article-entry').each(function (i) {
       $(this).find('img').each(function () {
         if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a') ||
-          $(this).hasClass('vemoji')) return;
+          $(this).hasClass('vemoji') || $(this).hasClass('vimg')) return;
         var alt = this.alt;
         $(this).wrap('<a href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
       });
