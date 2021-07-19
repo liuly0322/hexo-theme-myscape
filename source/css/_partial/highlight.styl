@@ -7,7 +7,7 @@ highlight-comment = #999999
 $code-block
   background: highlight-background
   margin: 0
-  padding: 8px
+  padding: 0 1em
   overflow: auto
   color: highlight-foreground
   line-height: font-size * line-height
@@ -31,12 +31,60 @@ $line-numbers
       background: none
       text-shadow: none
       padding: 0
+  .code-area
+    &:before
+      display: block
+      content: ' '
+      height: 32px
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      background-color: #f6f6f6
+      padding: 0 10px
+      border-top-left-radius: 4px
+      border-top-right-radius: 4px
+    &:after
+      content: " "
+      position: absolute
+      border-radius: 50%
+      background: #ff5f56
+      width: 12px
+      height: 12px
+      top: 0
+      left: 12px
+      margin-top: 12px
+      -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f
+      box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f
+    .fa-copy
+      position: absolute
+      right: 1em
+      line-height: 32px
+      &:before
+        content: "\f24d"
+        font-family: font-icon
+        font-size: 1em
+      &:hover
+        cursor: pointer
+    .code_lang
+      text-align: right
+      position: relative
+      right: 2.5em
+      line-height: 32px
+      font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace
+    .codecopy_notice
+      position: absolute
+      top: 0.7rem
+      right: 6px
+      z-index: 1
+      filter: invert(50%)
+      opacity: 0
   .highlight
     @extend $code-block
     pre
       border: none
       margin: 0
-      padding: 0
+      padding: .5em 0
     table
       margin: 0
       width: auto
@@ -54,7 +102,8 @@ $line-numbers
     .gutter pre
       @extend $line-numbers
       text-align: right
-      padding-right: 20px
+      padding-right: 10px
+      padding-left: 10px
       user-select: none
     .line
       height: font-size * line-height
