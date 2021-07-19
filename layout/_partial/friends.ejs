@@ -1,0 +1,92 @@
+<style>
+    .friend-all {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1 auto;
+    }
+    .friend-card {
+        position: relative;
+        overflow: hidden;
+        margin: 20px;
+        border: thin solid rgba(0,0,0,.12);
+        border-radius: 5%;
+        padding: 20px;
+        min-width: 200px;
+    }
+    .friend-card:hover{
+        background-color: #eee;
+    }
+    .content {
+        align-items: center;
+        align-self: center;
+        display: flex;
+        flex-wrap: wrap;
+        flex: 1 1;
+        overflow: hidden;
+        padding: 12px 0;
+    }
+    .friend-all img{
+        width: 80px;
+        height: 80px;
+        float: left;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+    .friend-all a{
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        height: 160px;
+        color: black;
+        text-decoration: none;
+    }
+    .friend-name{
+        font-weight: bold;
+        flex: 1 1 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .friend-intro{
+        flex: 1 1 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .friend-name{
+        font-size: 1.5em;
+        margin-bottom: 1em;
+    }
+</style>
+<article id="<%= post.layout %>-<%= post.slug %>" class="h-entry article article-type-<%= post.layout %>"
+    itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <%- partial('post/gallery') %>
+            <% if (post.link || post.title){ %>
+                <header class="article-header">
+                    <%- partial('post/title', {class_name: 'p-name article-title' }) %>
+                </header>
+                <% } %>
+                    <% if (site.tags.length){ %>
+                        <br>
+                        <hr>
+                        <% var friends=site.data.friends; %>
+                            <div class="friend-all">
+                                <% for (var i=0, len=friends.length; i < len; i++) { %>
+                                    <% var friend=friends[i]; %>
+                                        <a href="<%- url_for(friend.url) %>" target="_blank">
+                                            <div class="friend-card">
+                                                <img src="<%- url_for(friend.avatar) %>" alt="img">
+                                                <div class="content">
+                                                    <h1 class="friend-name">
+                                                        <%= friend.name %>
+                                                    </h1>
+                                                    <p class="friend-intro">
+                                                        <%= friend.introduction %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <% } %>
+                            </div>
+                            <% } %>
+    </div>
+</article>
