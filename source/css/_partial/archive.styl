@@ -1,9 +1,6 @@
 .archives-wrap
   margin: block-margin 0
 
-.archives
-  clearfix()
-
 .archive-year-wrap
   margin-bottom: 1em
 
@@ -12,18 +9,22 @@
 
 .archives
   column-gap: 10px
-  @media mq-tablet
-    column-count: 2
-  @media mq-normal
-    column-count: 3
+  display: flex
+  flex-wrap: wrap
 
 .archive-article
-  avoid-column-break()
+  flex: 1 1
+  min-width: 250px
 
 .archive-article-inner
   @extend $block
   padding: 10px
   margin-bottom: 15px
+  height: 54px
+  display: flex
+  flex: 1 0 auto
+  flex-wrap: wrap
+  align-items: center
 
 .archive-article-title
   text-decoration: none
@@ -44,6 +45,7 @@
   line-height: 1em
   margin-bottom: 0.5em
   display: block
+  width: 100%
 
 #page-nav
   clearfix()
