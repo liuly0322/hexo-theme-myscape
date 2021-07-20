@@ -6,3 +6,18 @@
     <div class="widget" id="menu"></div>
   </div>
 </div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.css">
+<script src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js"></script>
+<script>
+  tocbot.init({
+    tocSelector: '#menu',
+    contentSelector: '.e-content',
+    headingSelector: 'h2, h3, h4',
+    hasInnerContainers: false,
+  });
+  if (document.querySelector('#menu').innerHTML !== '' &&
+    window.matchMedia('(min-width: 768px)').matches) {
+    document.querySelector('#menu-wrap').style.display = 'block';
+  }
+</script>
