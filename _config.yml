@@ -2,10 +2,10 @@
 menu:
   主页: /
   标签: /tags
-  归档: /archives
   关于: /about
   友情链接: /friends
   微博: /microblog
+  归档: /archives
 rss: /atom.xml
 banner: "images/banner.jpg"
 
@@ -33,11 +33,12 @@ sidebar: right
 widgets:
 - oneword
 - category
-- tag
+# - tag
 # - tagcloud
-- archive
-- recent_posts
-- about
+# - archive
+# - recent_posts
+# - about
+- menu
 - nav-widget
 
 # display widgets at the bottom of index pages (pagination == 2)

@@ -11,7 +11,7 @@
         <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
         <%- partial('post/category') %>
       </div>
-      <div class="e-content article-entry" itemprop="articleBody">
+      <div class="article-entry" itemprop="articleBody">
         <% if (post.excerpt){ %>
           <%- post.excerpt %>
           <% if (theme.excerpt_link){ %>
