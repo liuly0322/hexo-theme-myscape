@@ -105,11 +105,13 @@ $(window).scroll(function () {
   else {
     $("#go-page-front").css({ display: "none" })
   }
-  if (scrollTop > 720) {
-    $("#menu-wrap").addClass('toc-fixed');
-  }
-  else {
-    $("#menu-wrap").removeClass('toc-fixed');
+  if(window.matchMedia('(min-width: 768px)').matches){
+    if (scrollTop > 720) {
+      $("#menu-wrap").addClass('toc-fixed');
+    }
+    else {
+      $("#menu-wrap").removeClass('toc-fixed');
+    }
   }
 });
 $("#go-page-front").click(function () {
