@@ -13,6 +13,9 @@
         <% if (theme.sidebar && theme.sidebar !== 'bottom' && is_page()){ %>
           <%- partial('_partial/ispage_sidebar', null, {cache: !config.relative_link}) %>
         <% } %>
+        <% if (theme.tocbot.enable && page.tocbot) { %>
+          <%- partial('_widget/menu') %>
+        <% } %>
       </div>
       <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>
     </div>

@@ -1,6 +1,7 @@
 <head>
   <meta charset="utf-8">
   <%- js('js/dark_theme') %>
+  <% if (is_home() || theme.mathjax.enable && page.mathjax) { %>
   <script>
   window.MathJax = {
     tex: {
@@ -13,6 +14,7 @@
   };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" async=""></script>
+  <% } %>
   <%- partial('google-analytics') %>
   <%
   var title = page.title;

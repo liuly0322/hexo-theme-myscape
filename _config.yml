@@ -2,10 +2,10 @@
 menu:
   主页: /
   标签: /tags
-  关于: /about
-  友情链接: /friends
   微博: /microblog
   归档: /archives
+  关于: /about
+  友情链接: /friends
 rss: /atom.xml
 banner: "images/banner.jpg"
 
@@ -38,7 +38,6 @@ widgets:
 # - archive
 # - recent_posts
 # - about
-- menu
 - nav-widget
 
 # display widgets at the bottom of index pages (pagination == 2)
@@ -69,6 +68,10 @@ valine:
   avatar: robohash # gravatar style https://valine.js.org/#/avatar
   placeholder: 快来留下评论吧～ # valine comment input placeholder(like: Please leave your footprints )
   
-# mathjax
-mathjax:
+# mathjax: enable you to use TeX commands
+mathjax:  #you need also write "mathjax: true" in your post or page
+  enable: true
+
+# tocbot: add menu to your post or page
+tocbot:   #you need also write "tocbot: true" in your post or page
   enable: true
