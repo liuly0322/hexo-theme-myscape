@@ -30,6 +30,19 @@
   <script>
     if (window.mermaid) {
       mermaid.initialize("");
+      const mermaids = document.querySelectorAll('.mermaid');
+      function wait(){
+        if (mermaids[0].querySelector('svg') == null) {
+          setTimeout("wait()", 100)
+          return;
+        }
+        for (let i = 0; i < mermaids.length; i++) {
+          mermaids[i].querySelector('svg').setAttribute('height','100%');
+        }
+      }
+      if(mermaids.length){
+        wait();
+      }
     }
   </script>
 <% } %>
