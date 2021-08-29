@@ -49,11 +49,14 @@
       <% if (post.link || post.title){ %>
         <header class="article-header">
           <%- partial('post/title', {class_name: 'p-name article-title'}) %>
-          <div class="post-count">
-            <span class="count-item" id="word-count"> 文章字数： <%= wordcount(post.content) %></span>
-            <span class="count-item" id="read-time"> 阅读时长： <%= min2read(post.content) %> 分</span>
-          </div>
-          <hr>
+          <% if (theme.article_info) { %>
+            <div class="post-count">
+              <span class="count-item" id="update-time"> 更新日期： <%- date(page.updated, 'YYYY-MM-DD') %></span>
+              <span class="count-item" id="word-count"> 文章字数： <%= wordcount(post.content) %></span>
+              <span class="count-item" id="read-time"> 阅读时长： <%= min2read(post.content) %> 分</span>
+            </div>
+            <hr>
+          <% } %>
         </header>
       <% } %>
       <div class="e-content article-entry" itemprop="articleBody">
