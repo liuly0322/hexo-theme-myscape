@@ -23,19 +23,20 @@
         <% if (theme.rss){ %>
           <a id="nav-rss-link" class="nav-icon" href="<%- url_for(theme.rss) %>" title="<%= __('rss_feed') %>"></a>
         <% } %>
-        <a href="javascript:;" id="nav-search-btn" class="popup-trigger nav-icon"></a>
-        <div class="popup search-popup local-search-popup">
-          <div class="local-search-header clearfix">
-            <span id="nav-inner-icon"></span>
-            <span class="popup-btn-close"></span>
-            <div class="local-search-input-wrapper">
-              <input autocomplete="off"
-                     placeholder="Searching..." spellcheck="false"
-                     type="text" id="local-search-input">
+        <% if (theme.local_search.enable) { %>
+          <script>window.localSearchPath = "<%- theme.local_search.path %>"</script>
+          <a href="javascript:;" id="nav-search-btn" class="popup-trigger nav-icon"></a>
+          <div class="popup search-popup local-search-popup">
+            <div class="local-search-header clearfix">
+              <span id="nav-inner-icon"></span>
+              <span class="popup-btn-close"></span>
+              <div class="local-search-input-wrapper">
+                <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+              </div>
             </div>
+            <div id="local-search-result"></div>
           </div>
-          <div id="local-search-result"></div>
-        </div>
+        <% } %>
       </nav>
     </div>
   </div>

@@ -6,7 +6,7 @@ $(document).ready(function() {
     var datas;
     var isXml = true;
     // Search DB path
-    var path = '/~liuly0322/blog/search.xml'
+    var path = window.localSearchPath;
     var input = document.getElementById('local-search-input');
     var resultContent = document.getElementById('local-search-result');
   
@@ -138,7 +138,7 @@ $(document).ready(function() {
             var slicesOfTitle = [];
             if (indexOfTitle.length !== 0) {
               var tmp = mergeIntoSlice(title, 0, title.length, indexOfTitle, searchText);
-              searchTextCount += tmp.searchTextCountInSlice;
+              searchTextCount += tmp.searchTextCount;
               slicesOfTitle.push(tmp);
             }
   
@@ -160,7 +160,7 @@ $(document).ready(function() {
                 end = content.length;
               }
               let tmp = mergeIntoSlice(content, start, end, indexOfContent, searchText);
-              searchTextCount += tmp.searchTextCountInSlice;
+              searchTextCount += tmp.searchTextCount;
               slicesOfContent.push(tmp);
             }
   
@@ -175,7 +175,7 @@ $(document).ready(function() {
             });
   
             // Select top N slices in content
-            var upperBound = 1
+            var upperBound = 3
             if (upperBound >= 0) {
               slicesOfContent = slicesOfContent.slice(0, upperBound);
             }

@@ -7,6 +7,9 @@ menu:
   关于: /about
   友情链接: /friends
 rss: /atom.xml
+local_search:
+  enable: true
+  path: /~liuly0322/blog/search.xml
 banner: "images/banner.jpg"
 
 # Content
