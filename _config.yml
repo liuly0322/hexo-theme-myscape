@@ -79,3 +79,8 @@ mathjax:  #you need also write "mathjax: true" in your post or page
 # tocbot: add menu to your post or page
 tocbot:   #you need also write "tocbot: true" in your post or page
   enable: true
+
+  
+# mermaid chart, you need also write "mermaid: true" in your post or page
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
