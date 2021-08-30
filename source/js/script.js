@@ -212,3 +212,33 @@ $(function () {
     $(this).parent().find(".code_lang").text(lang_name);
   });
 });
+
+//复制添加版权信息
+if(window.copyright){
+  $('.article-entry').on('copy', function (e) {
+    if (typeof window.getSelection === 'undefined') return;// IE8 or earlier
+    var selection = window.getSelection();
+    if (('' + selection).length < Number.parseInt(window.copyright.min)) {
+        return;
+    }
+    var bodyElement = document.getElementsByTagName('body')[0];
+    var newdiv = document.createElement('div');
+    newdiv.style.position = 'absolute';
+    newdiv.style.left = '-99999px';
+    bodyElement.appendChild(newdiv);
+    newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+    // we need a <pre> tag workaround.
+    // otherwise the text inside "pre" loses all the line breaks!
+    if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+        newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+    }
+    var url = document.location.href;
+    newdiv.innerHTML += '<br />'
+        + '来源: ' + window.copyright.title + '<br />'
+        + '文章作者: ' + window.copyright.author + '<br />'
+        + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+        + window.copyright.description;
+    selection.selectAllChildren(newdiv);
+    window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+  });
+}

@@ -1,29 +1,23 @@
-<% if (config.disqus_shortname){ %>
-<script>
-  var disqus_shortname = '<%= config.disqus_shortname %>';
-  <% if (page.permalink){ %>
-  var disqus_url = '<%= page.permalink %>';
-  <% } %>
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.async = true;
-    dsq.src = 'https://' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<% } %>
-
 <%- js('js/jquery-3.4.1.min.js') %>
 
 <% if (theme.fancybox){ %>
   <%- js('fancybox/jquery.fancybox.min.js') %>
 <% } %>
 
+<% if (theme.copyright.enable) { %>
+  <script>
+    window.copyright = {
+      min: '<%- theme.copyright.minCharNumber %>',
+      title: '<%= config.title %>',
+      author: '<%= config.author %>',
+      description: '<%- theme.copyright.description %>'
+    }
+  </script>
+<% } %>
+
 <%- js('js/script') %>
 
 <%- js('js/local-search') %>
-
-<%- partial('gauges-analytics') %>
 
 <% if (is_home() || theme.mermaid.enable && page.mermaid) { %>
   <script src='https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js'></script>
@@ -46,7 +40,6 @@
     }
   </script>
 <% } %>
-
 
 <% if(theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
   <%- js('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.Pure.min.js') %>
