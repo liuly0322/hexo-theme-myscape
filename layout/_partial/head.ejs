@@ -15,6 +15,16 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.min.js" async=""></script>
   <% } %>
+  <% if (theme.copyright.enable) { %>
+    <script>
+      window.copyright = {
+        min: '<%- theme.copyright.minCharNumber %>',
+        title: '<%= config.title %>',
+        author: '<%= config.author %>',
+        description: '<%- theme.copyright.description %>'
+      }
+    </script>
+  <% } %>
   <%
   var title = page.title;
 
