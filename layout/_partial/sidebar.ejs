@@ -2,13 +2,15 @@
   <% theme.widgets.forEach(function(widget){ %>
     <%- partial('_widget/' + widget) %>
   <% }) %>
-  <% if (theme.valine.enable && is_home()) { %>
+  <% if (is_home()) { %>
     <div class="widget-wrap">
       <h3 class="widget-title">最新评论</h3>
       <div class="widget">
         <img class="vimg" id="comment-img">
-        <span id='comment-person'></span> ： <a id="comment-from"></a>
-        <div id="comment-text"></div>
+        <div class="vh">
+          <span id='comment-person'></span> ： <a id="comment-from"></a>
+          <div id="comment-text"></div>
+        </div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>

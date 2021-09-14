@@ -8,10 +8,10 @@
       <div class="outer">
         <section id="main"><%- body %></section>
         <% if (theme.sidebar && theme.sidebar !== 'bottom' && is_page() == 0){ %>
-          <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+          <%- partial('_partial/sidebar') %>
         <% } %>
         <% if (theme.sidebar && theme.sidebar !== 'bottom' && is_page()){ %>
-          <%- partial('_partial/ispage_sidebar', null, {cache: !config.relative_link}) %>
+          <%- partial('_partial/ispage_sidebar') %>
         <% } %>
         <% if (theme.tocbot.enable && page.tocbot) { %>
           <%- partial('_widget/menu') %>
