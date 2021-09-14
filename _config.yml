@@ -48,6 +48,7 @@ valine:
   pageSize: 10 # comment list page size
   avatar: robohash # gravatar style https://valine.js.org/#/avatar
   placeholder: 快来留下评论吧～ # valine comment input placeholder(like: Please leave your footprints )
+  recentNum: 3 # 在首页显示多少条最新评论
   
 # mathjax: enable you to use TeX commands
 mathjax:  #you need also write "mathjax: true" in your post or page

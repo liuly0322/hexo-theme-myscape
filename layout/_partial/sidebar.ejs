@@ -5,13 +5,7 @@
   <% if (is_home() && theme.valine.enable) { %>
     <div class="widget-wrap">
       <h3 class="widget-title">最新评论</h3>
-      <div class="widget">
-        <img class="vimg" id="comment-img">
-        <div class="vh">
-          <span id="comment-person"></span> ： <a id="comment-from"></a>
-          <div class="vtime" id="comment-time"></div>
-          <div id="comment-text"></div>
-        </div>
+      <div class="widget" id="recent-comment" style="padding-top: 0;">
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
@@ -49,22 +43,27 @@
           query.descending('createdAt');
           const regExp = new RegExp('^((?!microblog).)*$');
           query.matches('url', regExp);
-          query.first().then((comment) => {
-            const url = comment.attributes['url'];
-            const src = 'https://gravatar.loli.net/avatar/' + MD5(comment.attributes['mail']) + '?d=robohash&v=1.4.14'
-            document.querySelector('#comment-text').innerHTML = comment.attributes['comment'];
-            document.querySelector('#comment-img').setAttribute('src', src);
-            document.querySelector('#comment-person').innerHTML = comment.attributes['nick'];
-            document.querySelector('#comment-time').innerHTML = timeAgo(comment.attributes['insertedAt']);
-            a = document.querySelector('#comment-from');
-            a.setAttribute('href', url);
-            fetch(url).then(res => res.text()).then(text => {
-              const index = text.indexOf('og:title');
-              let t = text.slice(index + 19);
-              t = t.slice(0, t.indexOf('\"'));
-              a.innerHTML = '「' + t + '」';
+          query.limit(Number.parseInt('<%= theme.valine.recentNum %>'));
+          let s = '',count = 0;
+          query.find().then((comments) => {
+            comments.forEach((comment) => {
+              const url = comment.attributes['url'];
+              const src = 'https://gravatar.loli.net/avatar/' + MD5(comment.attributes['mail']) + '?d=robohash&v=1.4.14'
+              fetch(url).then(res => res.text()).then(text => {
+                const index = text.indexOf('og:title');
+                let t = text.slice(index + 19);
+                t = t.slice(0, t.indexOf('\"'));
+                s += `<div class="vcard"><img class="vimg" src="${src}"><div class="vh"><span>${comment.attributes['nick']}</span> ： <a href="${url}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(comment.attributes['insertedAt'])}</div><div class="comment-text">${comment.attributes['comment']}</div></div></div>`;
+                count++;
+              })
             })
-          })
+          });
+          const id2=setInterval(()=>{
+            if(count==Number.parseInt('<%= theme.valine.recentNum %>')){
+              clearInterval(id2);
+              document.querySelector('#recent-comment').innerHTML = s;
+            }
+          },100);
           clearInterval(id);
         }
       }, 100);
