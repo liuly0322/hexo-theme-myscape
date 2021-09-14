@@ -34,9 +34,9 @@
         }
         return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
       }
-      const id = setInterval(() => {
+      const getRecentComment = setInterval(() => {
         if (typeof (AV) != 'undefined' && AV.applicationId) {
-          clearInterval(id);
+          clearInterval(getRecentComment);
           const query = new AV.Query('Comment');
           query.descending('createdAt');
           const regExp = new RegExp('^((?!microblog).)*$');
@@ -45,21 +45,21 @@
           query.limit(n);
           let s = new Array(), count = 0;
           query.find().then((comments) => {
-            comments.forEach((comment, index) => {
+            comments.forEach((comment, i) => {
               const url = comment.attributes['url'];
               const src = 'https://gravatar.loli.net/avatar/' + MD5(comment.attributes['mail']) + '?d=robohash&v=1.4.14'
               fetch(url).then(res => res.text()).then(text => {
                 const index = text.indexOf('og:title');
                 let t = text.slice(index + 19);
                 t = t.slice(0, t.indexOf('\"'));
-                s[index] = `<div class="vcard"><img class="vimg" src="${src}"><div class="vh"><span>${comment.attributes['nick']}</span> ： <a href="${url}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(comment.attributes['insertedAt'])}</div><div class="comment-text">${comment.attributes['comment']}</div></div></div>`;
+                s[i] = `<div class="vcard"><img class="vimg" src="${src}"><div class="vh"><span>${comment.attributes['nick']}</span> ： <a href="${url}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(comment.attributes['insertedAt'])}</div><div class="comment-text">${comment.attributes['comment']}</div></div></div>`;
                 count++;
               })
             })
           });
-          const id2 = setInterval(() => {
+          const waitToJoin = setInterval(() => {
             if (count == n) {
-              clearInterval(id2);
+              clearInterval(waitToJoin);
               document.querySelector('#recent-comment').innerHTML = s.join('');
             }
           }, 100);
