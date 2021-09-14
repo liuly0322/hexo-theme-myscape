@@ -2,4 +2,42 @@
   <% theme.widgets.forEach(function(widget){ %>
     <%- partial('_widget/' + widget) %>
   <% }) %>
+  <% if (theme.valine.enable && is_home()) { %>
+    <div class="widget-wrap">
+      <h3 class="widget-title">最新评论</h3>
+      <div class="widget">
+        <img class="vimg" id="comment-img">
+        <span id='comment-person'></span> ： <a id="comment-from"></a>
+        <div id="comment-text"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
+    <script>
+      const id = setInterval(() => {
+          if (typeof (AV) != 'undefined' && AV.applicationId) {
+            const query = new AV.Query('Comment');
+            query.descending('createdAt');
+            const regExp = new RegExp('^((?!microblog).)*$', 'i');
+            query.matches('url', regExp);
+            query.first().then((comment) => {
+              const text = comment.attributes['comment'];
+              const url = comment.attributes['url'];
+              const src = 'https://gravatar.loli.net/avatar/'+MD5(comment.attributes['mail'])+'?d=robohash&v=1.4.14'
+              document.querySelector('#comment-text').innerHTML = text;
+              document.querySelector('#comment-img').setAttribute('src',src);
+              document.querySelector('#comment-person').innerHTML = comment.attributes['nick']
+              a=document.querySelector('#comment-from');
+              a.setAttribute('href', url);
+              fetch(url).then(res => res.text()).then(text => {
+                const index = text.indexOf('og:title');
+                let t = text.slice(index + 19)
+                t = t.slice(0, t.indexOf('\"'))
+                a.innerHTML = '「'+t+'」';
+              })
+            })
+            clearInterval(id);
+          }
+        }, 100);
+    </script>
+  <% } %>
 </aside>
