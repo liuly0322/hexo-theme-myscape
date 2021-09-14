@@ -5,7 +5,7 @@
   <% if (is_home() && theme.valine.enable) { %>
     <div class="widget-wrap">
       <h3 class="widget-title">最新评论</h3>
-      <div class="widget" id="recent-comment" style="padding-top: 0;">
+      <div class="widget" id="recent-comment" style="padding: 0 20px 15px 15px;">
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
@@ -26,9 +26,7 @@
           return h + '小时前';
         }
         if (d < 0) return '刚刚';
-        if (d < 8) {
-          return d + '天前';
-        }
+        if (d < 8) return d + '天前';
         const pad = (n) => {
           var s = n.toString();
           while (s.length < 2) s = '0' + s;
@@ -36,35 +34,35 @@
         }
         return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
       }
-
       const id = setInterval(() => {
         if (typeof (AV) != 'undefined' && AV.applicationId) {
+          clearInterval(id);
           const query = new AV.Query('Comment');
           query.descending('createdAt');
           const regExp = new RegExp('^((?!microblog).)*$');
           query.matches('url', regExp);
-          query.limit(Number.parseInt('<%= theme.valine.recentNum %>'));
-          let s = '',count = 0;
+          const n = Number.parseInt('<%= theme.valine.recentNum %>');
+          query.limit(n);
+          let s = new Array(), count = 0;
           query.find().then((comments) => {
-            comments.forEach((comment) => {
+            comments.forEach((comment, index) => {
               const url = comment.attributes['url'];
               const src = 'https://gravatar.loli.net/avatar/' + MD5(comment.attributes['mail']) + '?d=robohash&v=1.4.14'
               fetch(url).then(res => res.text()).then(text => {
                 const index = text.indexOf('og:title');
                 let t = text.slice(index + 19);
                 t = t.slice(0, t.indexOf('\"'));
-                s += `<div class="vcard"><img class="vimg" src="${src}"><div class="vh"><span>${comment.attributes['nick']}</span> ： <a href="${url}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(comment.attributes['insertedAt'])}</div><div class="comment-text">${comment.attributes['comment']}</div></div></div>`;
+                s[index] = `<div class="vcard"><img class="vimg" src="${src}"><div class="vh"><span>${comment.attributes['nick']}</span> ： <a href="${url}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(comment.attributes['insertedAt'])}</div><div class="comment-text">${comment.attributes['comment']}</div></div></div>`;
                 count++;
               })
             })
           });
-          const id2=setInterval(()=>{
-            if(count==Number.parseInt('<%= theme.valine.recentNum %>')){
+          const id2 = setInterval(() => {
+            if (count == n) {
               clearInterval(id2);
-              document.querySelector('#recent-comment').innerHTML = s;
+              document.querySelector('#recent-comment').innerHTML = s.join('');
             }
-          },100);
-          clearInterval(id);
+          }, 100);
         }
       }, 100);
     </script>
