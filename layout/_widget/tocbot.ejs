@@ -1,12 +1,10 @@
-<script>
-  const s = document.querySelector('#sidebar');
-  let w = document.createElement('div');
-  w.className = 'widget-wrap';
-  w.id = 'menu-wrap';
-  w.style.display = 'none';
-  w.innerHTML = '<h3 class="widget-title">目录</h3><div class="menu-box"><div class="widget" id="menu"></div></div>';
-  s.appendChild(w);
-</script>
+<% if (page.tocbot) { %>
+<div class="widget-wrap" id="menu-wrap" style="display: none;">
+    <h3 class="widget-title">目录</h3>
+    <div class="menu-box">
+        <div class="widget" id="menu"></div>
+    </div>
+</div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.css">
 <script src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js"></script>
 <script>
@@ -22,3 +20,4 @@
   }
 </script>
 <%- js('js/toc-phone') %>
+<% } %>
