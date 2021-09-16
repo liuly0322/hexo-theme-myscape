@@ -1,4 +1,4 @@
-<% if (site.categories.length){ %>
+<% if (site.categories.length && !is_page()){ %>
   <div class="widget-wrap">
     <h3 class="widget-title"><%= __('categories') %></h3>
     <div class="widget">

@@ -5,36 +5,36 @@
 <%- js('js/script') %>
 <%- js('js/local-search') %>
 <% if (is_home() || theme.mermaid.enable && page.mermaid) { %>
-  <script src='https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid && document.querySelector('.mermaid')) {
-      mermaid.initialize("");
-      const id = setInterval(() => {
-        const mermaids = document.querySelectorAll('.mermaid');
-        if (mermaids[0].querySelector('svg') == null) {
-          return;
-        }
-        for (let i = 0; i < mermaids.length; i++) {
-          mermaids[i].querySelector('svg').setAttribute('height','100%');
-        }
-        clearInterval(id);
-      }, 100);
-    }
-  </script>
+<script src='https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js'></script>
+<script>
+  if (window.mermaid && document.querySelector('.mermaid')) {
+    mermaid.initialize("");
+    const id = setInterval(() => {
+      const mermaids = document.querySelectorAll('.mermaid');
+      if (mermaids[0].querySelector('svg') == null) {
+        return;
+      }
+      for (let i = 0; i < mermaids.length; i++) {
+        mermaids[i].querySelector('svg').setAttribute('height','100%');
+      }
+      clearInterval(id);
+    }, 100);
+  }
+</script>
 <% } %>
 <% if(theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
   <%- js('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.Pure.min.js') %>
 <script>
-    var notify = '<%= theme.valine.notify %>' == true;
-    var verify = '<%= theme.valine.verify %>' == true;
-    new Valine({
-        el: '.vc',
-        appId: "<%= theme.valine.appId %>",
-        appKey: "<%= theme.valine.appKey %>",
-        placeholder: "<%= theme.valine.placeholder %>",
-        pageSize:'<%= theme.valine.pageSize %>',
-        avatar:'<%= theme.valine.avatar %>',
-        visitor: eval('<%= theme.valine.visitor %>')
-    });
+  var notify = '<%= theme.valine.notify %>' == true;
+  var verify = '<%= theme.valine.verify %>' == true;
+  new Valine({
+    el: '.vc',
+    appId: "<%= theme.valine.appId %>",
+    appKey: "<%= theme.valine.appKey %>",
+    placeholder: "<%= theme.valine.placeholder %>",
+    pageSize: '<%= theme.valine.pageSize %>',
+    avatar: '<%= theme.valine.avatar %>',
+    visitor: eval('<%= theme.valine.visitor %>')
+  });
 </script>
 <% } %>

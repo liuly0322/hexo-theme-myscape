@@ -2,7 +2,7 @@
   <% theme.widgets.forEach(function(widget){ %>
     <%- partial('_widget/' + widget) %>
   <% }) %>
-  <% if (is_home() && theme.valine.enable) { %>
+  <% if (is_home() && theme.valine.enable && theme.valine.recentNum) { %>
     <div class="widget-wrap">
       <h3 class="widget-title">最新评论</h3>
       <div class="widget" id="recent-comment" style="padding: 0 20px 15px 15px;"></div>

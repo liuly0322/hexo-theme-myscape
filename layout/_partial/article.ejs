@@ -3,9 +3,9 @@
     <div class="article-inner">
       <%- partial('post/gallery') %>
       <% if (post.link || post.title){ %>
-        <header class="article-header index-header">
-          <%- partial('post/title', {class_name: 'p-name article-title'}) %>
-        </header>
+      <header class="article-header index-header">
+        <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+      </header>
       <% } %>
       <div class="article-meta index-meta">
         <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
@@ -15,9 +15,9 @@
         <% if (post.excerpt){ %>
           <%- post.excerpt %>
           <% if (theme.excerpt_link){ %>
-            <p class="article-more-link">
-              <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
-            </p>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+          </p>
           <% } %>
         <% } else { %>
           <%- post.content %>
@@ -47,21 +47,21 @@
     <div class="article-inner">
       <%- partial('post/gallery') %>
       <% if (post.link || post.title){ %>
-        <header class="article-header">
-          <%- partial('post/title', {class_name: 'p-name article-title'}) %>
-          <% if (theme.article_info) { %>
-            <div class="post-count">
-              <span class="count-item" id="update-time"> 更新日期： <%- date(page.updated, 'YYYY-MM-DD') %></span>
-              <span class="count-item" id="word-count"> 文章字数： <%= wordcount(post.content) %></span>
-              <span class="count-item" id="read-time"> 阅读时长： <%= min2read(post.content) %> 分</span>
-              <% if (theme.valine.visitor) { %>
-              <span class="count-item leancloud_visitors"> 阅读量： <span class="leancloud-visitors-count"></span></span>
-              <script>document.querySelector('.leancloud_visitors').id='<%- url_for(post.path) %>'.replace(/index\.html?$/, '')</script>
-              <% } %>
-            </div>
-            <hr>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+        <% if (theme.article_info) { %>
+        <div class="post-count">
+          <span class="count-item" id="update-time"> 更新日期： <%- date(page.updated, 'YYYY-MM-DD') %></span>
+          <span class="count-item" id="word-count"> 文章字数： <%= wordcount(post.content) %></span>
+          <span class="count-item" id="read-time"> 阅读时长： <%= min2read(post.content) %> 分</span>
+          <% if (theme.valine.visitor) { %>
+          <span class="count-item leancloud_visitors"> 阅读量： <span class="leancloud-visitors-count"></span></span>
+          <script>document.querySelector('.leancloud_visitors').id='<%- url_for(post.path) %>'.replace(/index\.html?$/, '')</script>
           <% } %>
-        </header>
+        </div>
+        <hr>
+        <% } %>
+      </header>
       <% } %>
       <div class="e-content article-entry" itemprop="articleBody">
         <%- post.content %>
@@ -92,7 +92,5 @@
 </section>
 <% } %>
 <% if (!index && post.comments && theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
-  <section id="comments" class="vc article-entry">
-
-  </section>
+  <section id="comments" class="vc article-entry"></section>
 <% } %>
