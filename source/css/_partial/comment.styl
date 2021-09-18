@@ -15,51 +15,47 @@
   .vpanel
     display: none
 
-.vc {
+.v {
     font-size: 16px;
     text-align: left
 }
 
-.vc * {
+.v * {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     line-height: 1.75
 }
 
-.vc pre code {
-    color: #000
-}
-
-.vc .vsys,
+.v .vsys,
 .vtime {
     color: #b3b3b3
 }
 
-.vc .text-right {
+.v .text-right {
     text-align: right
 }
 
-.vc .text-center {
+.v .text-center {
     text-align: center
 }
 
-.vc img {
+.v img {
     max-width: 100%;
     border: none
 }
 
-.vc hr {
+.v hr {
     margin: .825em 0;
     border-color: #f6f6f6;
     border-style: dashed
 }
 
-.vc.hide-avatar .vimg {
+.v.hide-avatar .vimg {
     display: none
 }
 
-.vc code,
-.vc pre {
+.v code,
+.v pre {
     background-color: #f8f8f8;
     padding: .2em .4em;
     border-radius: 3px;
@@ -67,28 +63,29 @@
     margin: 0
 }
 
-.vc pre {
+.v pre {
     padding: 10px;
     overflow: auto;
     line-height: 1.45;
     border: 0;
 }
 
-.vc pre code {
+.v pre code {
+    color: #000
     padding: 0;
     background: transparent;
     white-space: pre-wrap;
     word-break: keep-all
 }
 
-.vc blockquote {
+.v blockquote {
     color: #666;
     margin: .5em 0;
     padding: 0 0 0 1em;
     border-left: 8px solid hsla(0, 0%, 93%, .5)
 }
 
-.vc .vinput {
+.v .vinput {
     border: none;
     resize: none;
     outline: none;
@@ -97,14 +94,14 @@
     font-size: .775em
 }
 
-.vc input[type=checkbox],
-.vc input[type=radio] {
+.v input[type=checkbox],
+.v input[type=radio] {
     display: inline-block;
     vertical-align: middle;
     margin-top: -2px
 }
 
-.vc .vicon {
+.v .vicon {
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
@@ -112,66 +109,66 @@
     vertical-align: middle
 }
 
-.vc .vicon+.vicon {
+.v .vicon+.vicon {
     margin-left: 10px
 }
 
-.vc .vicon.actived {
+.v .vicon.actived {
     fill: #66b1ff
 }
 
-.vc .vrow {
+.v .vrow {
     font-size: 0;
     padding: 10px 0
 }
 
-.vc .vrow .vcol {
+.v .vcol {
     display: inline-block;
     vertical-align: middle;
     font-size: 14px
 }
 
-.vc .vrow .vcol.vcol-20 {
+.v .vrow .vcol-20 {
     width: 20%
 }
 
-.vc .vrow .vcol.vcol-30 {
+.v .vrow .vcol-30 {
     width: 30%
 }
 
-.vc .vrow .vcol.vcol-40 {
+.v .vrow .vcol-40 {
     width: 40%
 }
 
-.vc .vrow .vcol.vcol-50 {
+.v .vrow .vcol-50 {
     width: 50%
 }
 
-.vc .vrow .vcol.vcol-60 {
+.v .vrow .vcol-60 {
     width: 60%
 }
 
-.vc .vrow .vcol.vcol-70 {
+.v .vrow .vcol-70 {
     width: 70%
 }
 
-.vc .vrow .vcol.vcol-80 {
+.v .vrow .vcol-80 {
     width: 80%
 }
 
-.vc .vrow .vcol.vctrl {
+.v .vrow .vcol.vctrl {
     font-size: 12px
 }
 
-.vc .emoji,
-.vc .vemoji {
+.v .emoji,
+.v .vemoji {
     max-width: 25px;
     vertical-align: middle;
     margin: 0 1px;
     display: inline-block
 }
 
-.vc .vwrap {
+.v .vwrap {
     border: 1px solid #f0f0f0;
     border-radius: 4px;
     margin-bottom: 10px;
@@ -180,23 +177,23 @@
     padding: 10px
 }
 
-.vc .vwrap input {
+.v .vwrap input {
     background: transparent
 }
 
-.vc .vwrap .vedit {
+.v .vwrap .vedit {
     position: relative;
     padding-top: 10px
 }
 
-.vc .vwrap .cancel-reply-btn {
+.v .vwrap .cancel-reply-btn {
     position: absolute;
     right: 5px;
     top: 5px;
     cursor: pointer
 }
 
-.vc .vwrap .vemojis {
+.v .vwrap .vemojis {
     display: none;
     font-size: 18px;
     max-height: 145px;
@@ -206,7 +203,7 @@
     box-shadow: 0 0 1px #f0f0f0
 }
 
-.vc .vwrap .vemojis i {
+.v .vwrap .vemojis i {
     font-style: normal;
     padding-top: 7px;
     width: 36px;
@@ -216,76 +213,76 @@
     vertical-align: middle
 }
 
-.vc .vwrap .vpreview {
+.v .vwrap .vpreview {
     padding: 7px;
     -webkit-box-shadow: 0 0 1px #f0f0f0;
     box-shadow: 0 0 1px #f0f0f0
 }
 
-.vc .vwrap .vheader .vinput {
+.v .vwrap .vheader .vinput {
     width: 33.33%;
     border-bottom: 1px dashed #dedede
 }
 
-.vc .vwrap .vheader.item2 .vinput {
+.v .vwrap .vheader.item2 .vinput {
     width: 50%
 }
 
-.vc .vwrap .vheader.item1 .vinput {
+.v .vwrap .vheader.item1 .vinput {
     width: 100%
 }
 
-.vc .vwrap .vheader .vinput:focus {
+.v .vwrap .vheader .vinput:focus {
     border-bottom-color: #eb5055
 }
 
 @media screen and (max-width:520px) {
 
-    .vc .vwrap .vheader.item2 .vinput,
-    .vc .vwrap .vheader .vinput {
+    .v .vwrap .vheader.item2 .vinput,
+    .v .vwrap .vheader .vinput {
         width: 100%
     }
 }
 
-.vc .vpower {
+.v .vpower {
     color: #999;
     font-size: .75em;
     padding: .5em 0
 }
 
-.vc .vpower a {
+.v .vpower a {
     font-size: .75em
 }
 
-.vc .vcount {
+.v .vcount {
     padding: 5px;
     font-weight: 600;
     font-size: 1.25em
 }
 
-.vc ol,
-.vc ul {
+.v ol,
+.v ul {
     padding: 0;
     margin-left: 1.25em
 }
 
-.vc .txt-center {
+.v .txt-center {
     text-align: center
 }
 
-.vc .txt-right {
+.v .txt-right {
     text-align: right
 }
 
-.vc .pd5 {
+.v .pd5 {
     padding: 5px
 }
 
-.vc .pd10 {
+.v .pd10 {
     padding: 10px
 }
 
-.vc .veditor {
+.v .veditor {
     width: 100%;
     min-height: 8.75em;
     font-size: .875em;
@@ -295,7 +292,7 @@
     transition: all .25s ease
 }
 
-.vc .vbtn {
+.v .vbtn {
     -webkit-transition-duration: .4s;
     transition-duration: .4s;
     text-align: center;
@@ -321,31 +318,31 @@
     outline: none
 }
 
-.vc .vbtn+.vbtn {
+.v .vbtn+.vbtn {
     margin-left: 1.25em
 }
 
-.vc .vbtn:active,
-.vc .vbtn:hover {
+.v .vbtn:active,
+.v .vbtn:hover {
     color: #3090e4;
     border-color: #3090e4
 }
 
-.vc .vbtn:disabled {
+.v .vbtn:disabled {
     border-color: #e1e1e1;
     color: #e1e1e1;
     background-color: #fdfafa;
     cursor: not-allowed
 }
 
-.vc .vempty {
+.v .vempty {
     padding: 1.25em;
     text-align: center;
     color: #555;
     overflow: auto
 }
 
-.vc .vsys {
+.v .vsys {
     display: inline-block;
     padding: .2em .5em;
     font-size: .75em;
@@ -354,12 +351,12 @@
 }
 
 @media screen and (max-width:520px) {
-    .vc .vsys {
+    .v .vsys {
         display: none
     }
 }
 
-.vc .vcards {
+.v .vcards {
     width: 100%
 }
 
@@ -369,7 +366,7 @@
     display: block
 }
 
-.vc .vcard:after {
+.v .vcard:after {
     content: "";
     clear: both;
     display: block
@@ -392,12 +389,12 @@
     }
 }
 
-.vc .vcard .vhead {
+.v .vcard .vhead {
     line-height: 1.5;
     margin-top: 0
 }
 
-.vc .vcard .vhead .vnick {
+.v .vcard .vhead .vnick {
     position: relative;
     font-size: .875em;
     font-weight: 500;
@@ -407,7 +404,7 @@
     display: inline-block
 }
 
-.vc .vcard .vhead .vnick:hover {
+.v .vcard .vhead .vnick:hover {
     color: #d7191a
 }
 
@@ -422,23 +419,23 @@
     margin-right: .875em
 }
 
-.vc .vh .vmeta {
+.v .vh .vmeta {
     line-height: 1;
     position: relative
 }
 
-.vc .vcard .vh .vmeta .vat {
+.v .vcard .vh .vmeta .vat {
     font-size: .8125em;
     color: #ef2f11;
     cursor: pointer;
     float: right
 }
 
-.vc .vcard:last-child .vh {
+.v .vcard:last-child .vh {
     border-bottom: none
 }
 
-.vc .vcard .vcontent {
+.v .vcard .vcontent {
     word-wrap: break-word;
     word-break: break-all;
     font-size: .875em;
@@ -448,21 +445,21 @@
     padding-top: .625em
 }
 
-.vc .vcard .vquote {
+.v .vcard .vquote {
     padding-left: 1em;
     border-left: 1px dashed hsla(0, 0%, 93%, .5)
 }
 
-.vc .vcard .vquote .vimg {
+.v .vcard .vquote .vimg {
     width: 2.225em;
     height: 2.225em
 }
 
-.vc .vpage .vmore {
+.v .vpage .vmore {
     margin: 1em 0
 }
 
-.vc .clear {
+.v .clear {
     content: "";
     display: block;
     clear: both
@@ -504,7 +501,7 @@
     }
 }
 
-.vc .vspinner {
+.v .vspinner {
     width: 22px;
     height: 22px;
     display: inline-block;
