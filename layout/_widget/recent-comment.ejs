@@ -22,7 +22,7 @@
       clearInterval(getRecentComment);
       const query = new AV.Query('Comment');
       query.descending('createdAt');
-      query.matches('url', RegExp('^((?!microblog).)*$'));
+      query.matches('url', /^((?!microblog).)*$/);
       query.limit(Number.parseInt('<%= theme.valine.recentNum %>'));
       query.find().then((comments) => {
         Promise.all(comments.map((comment) => fetch(comment.get('url')).then(resp => resp.text()))).then((texts) => {
