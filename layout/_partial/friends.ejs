@@ -70,27 +70,25 @@
   <div class="article-inner">
     <%- partial('post/gallery') %>
       <% if (post.link || post.title){ %>
-        <header class="article-header">
-          <%- partial('post/title', {class_name: 'p-name article-title' }) %>
-        </header>
+      <header class="article-header">
+        <%- partial('post/title', {class_name: 'p-name article-title' }) %>
+      </header>
       <% } %>
-      <% if (site.tags.length){ %>
-        <br><hr>
-        <% var friends=site.data.friends; %>
-        <div class="friend-all">
-          <% for (var i=0, len=friends.length; i < len; i++) { %>
-            <% var friend=friends[i]; %>
-            <a href="<%- url_for(friend.url) %>" target="_blank">
-              <div class="friend-card">
-                <img src="<%- url_for(friend.avatar) %>" alt="img">
-                <div class="content">
-                  <h1 class="friend-name"><%= friend.name %></h1>
-                  <p class="friend-intro"><%= friend.introduction %></p>
-                </div>
+      <br><hr>
+      <% var friends=site.data.friends; %>
+      <div class="friend-all">
+        <% for (var i=0, len=friends.length; i < len; i++) { %>
+          <% var friend=friends[i]; %>
+          <a href="<%- url_for(friend.url) %>" target="_blank">
+            <div class="friend-card">
+              <img src="<%- url_for(friend.avatar) %>" alt="img">
+              <div class="content">
+                <h1 class="friend-name"><%= friend.name %></h1>
+                <p class="friend-intro"><%= friend.introduction %></p>
               </div>
-            </a>
-          <% } %>
-        </div>
-      <% } %>
+            </div>
+          </a>
+        <% } %>
+      </div>
   </div>
 </article>

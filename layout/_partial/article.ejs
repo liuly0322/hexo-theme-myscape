@@ -54,7 +54,7 @@
           <span class="count-item" id="update-time"> 更新日期： <%- date(page.updated, 'YYYY-MM-DD') %></span>
           <span class="count-item" id="word-count"> 文章字数： <%= wordcount(post.content) %></span>
           <span class="count-item" id="read-time"> 阅读时长： <%= min2read(post.content) %> 分</span>
-          <% if (theme.valine.visitor) { %>
+          <% if (theme.valine.enable && theme.valine.visitor) { %>
           <span class="count-item leancloud_visitors"> 阅读量： <span class="leancloud-visitors-count"></span></span>
           <script>document.querySelector('.leancloud_visitors').id='<%- url_for(post.path) %>'.replace(/index\.html?$/, '')</script>
           <% } %>
