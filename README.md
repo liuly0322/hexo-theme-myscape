@@ -68,3 +68,34 @@ json 文件格式如下：
 ```
 
 旧版会出现至少全站需要有一个 tag 才能显示友情链接的 bug 。新版已经修复。
+
+### 本地搜索
+
+使用 [hexo-generator-search](https://github.com/wzpan/hexo-generator-search)。
+
+`npm install hexo-generator-search --save`
+
+将生成的搜索文件路径填入 config 中 path 位置即可。
+
+### RSS
+
+使用 [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed)
+
+`npm install hexo-generator-feed --save`
+
+然后在博客根目录 config 设置：
+```
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+```
+
+需要执行 `hexo clean` 以生效。
+
+其余配置可以参考本主题的 config.yml
