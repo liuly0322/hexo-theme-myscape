@@ -31,7 +31,7 @@
             let t = text.slice(text.indexOf('og:title') + 19);
             t = t.slice(0, t.indexOf('\"'));
             const get = str => comments[i].get(str);
-            res += `<div class="vcard"><img class="vimg" src="https://gravatar.loli.net/avatar/${MD5(get('mail'))}?d=robohash"><div class="vh"><span>${get('nick')}</span> ： <a href="${get('url')}" class="comment-from">「${t}」</a><div class="vtime">${timeAgo(get('insertedAt'))}</div><div class="comment-text">${get('comment')}</div></div></div>`
+            res += `<div class="vcard"><img class="vimg" src="https://gravatar.loli.net/avatar/${MD5(get('mail'))}?d=robohash"><div style="overflow:hidden"><span>${get('nick')}</span> ： <a href="${get('url')}" class="comment-from">「${t}」</a></div><div class="vh"><div class="comment-text">${get('comment')}</div><div class="vtime" style="float:right;margin:0">${timeAgo(get('insertedAt'))}</div></div></div>`
           })
           document.querySelector('#recent-comment').innerHTML = res;
         });
