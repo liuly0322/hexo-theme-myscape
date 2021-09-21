@@ -20,7 +20,7 @@
 
 (文章访问计数依赖 Valine ，旧版需要额外关闭 config 中 valine 的 visitor，最新版本已经只需要关闭 Valine 全局的 enable 即可)
 
-否则可以参照[官网](https://valine.js.org/)配置：
+否则可以参照[官网](https://valine.js.org/)配置，在 config 中修改 appId 和 appKey
 
 ### 文章总字数统计
 
