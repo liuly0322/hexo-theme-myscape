@@ -2,7 +2,8 @@
   <h3 class="widget-title">最新评论</h3>
   <div class="widget v" style="padding: 0 20px 15px 20px;">
     <div class="vcards"></div>
-    <div class="vpage txt-center" style="display: none;"><button type="button" class="vmore vbtn">加载更多...</button></div>
+    <div class="vload-bottom text-center"><i class="vspinner" style="width:30px;height:30px;"></i></div>
+    <div class="vpage txt-center"><button type="button" class="vmore vbtn">加载更多...</button></div>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
@@ -31,6 +32,8 @@
       const total = await query.count().then((count)=>count);
       let count = 0;
       const getNComment = () => {
+        recentComment.querySelector('.vpage').style.display = 'none';
+        recentComment.querySelector('.vload-bottom').style.display = 'block';
         query.skip(count);
         query.find().then((comments) => {
           count += comments.length;
@@ -44,6 +47,7 @@
             })
             recentComment.querySelector('.vcards').insertAdjacentHTML('beforeend',res);
             recentComment.querySelector('.vpage').style.display = count < total ? 'block' : 'none';
+            recentComment.querySelector('.vload-bottom').style.display = 'none';
             recentComment.style.display = 'block';
           });
         });
