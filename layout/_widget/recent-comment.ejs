@@ -1,6 +1,9 @@
-<div class="widget-wrap">
+<div class="widget-wrap" id="recent-comment" style="display: none;">
   <h3 class="widget-title">最新评论</h3>
-  <div class="widget v" id="recent-comment" style="padding: 0 20px 15px 15px;"></div>
+  <div class="widget v" style="padding: 0 20px 15px 20px;">
+    <div class="vcards"></div>
+    <div class="vpage txt-center" style="display: none;"><button type="button" class="vmore vbtn">加载更多...</button></div>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
 <script>
@@ -17,25 +20,36 @@
     if (t >= 0) return `${f(t / 1000)}秒前`;
     return '刚刚';
   }
-  const getRecentComment = setInterval(() => {
+  const getRecentComment = setInterval(async () => {
     if (typeof (AV) != 'undefined' && AV.applicationId) {
       clearInterval(getRecentComment);
+      const recentComment = document.getElementById('recent-comment');
       const query = new AV.Query('Comment');
       query.descending('createdAt');
       query.matches('url', /^((?!microblog).)*$/);
       query.limit(Number.parseInt('<%= theme.valine.recentNum %>'));
-      query.find().then((comments) => {
-        Promise.all(comments.map((comment) => fetch(comment.get('url')).then(resp => resp.text()))).then((texts) => {
-          let res = '';
-          texts.forEach((text, i) => {
-            let t = text.slice(text.indexOf('og:title') + 19);
-            t = t.slice(0, t.indexOf('\"'));
-            const get = str => comments[i].get(str);
-            res += `<div class="vcard"><img class="vimg" src="https://gravatar.loli.net/avatar/${MD5(get('mail'))}?d=robohash"><div style="overflow:hidden"><span>${get('nick')}</span> ： <a href="${get('url')}" class="comment-from">「${t}」</a></div><div class="vh"><div class="comment-text">${get('comment')}</div><div class="vtime" style="float:right;margin:0">${timeAgo(get('insertedAt'))}</div></div></div>`
-          })
-          document.querySelector('#recent-comment').innerHTML = res;
+      const total = await query.count().then((count)=>count);
+      let count = 0;
+      const getNComment = () => {
+        query.skip(count);
+        query.find().then((comments) => {
+          count += comments.length;
+          Promise.all(comments.map((comment) => fetch(comment.get('url')).then(resp => resp.text()))).then((texts) => {
+            let res = '';
+            texts.forEach((text, i) => {
+              let t = text.slice(text.indexOf('og:title') + 19);
+              t = t.slice(0, t.indexOf('\"'));
+              const get = str => comments[i].get(str);
+              res += `<div class="vcard"><div class="vhead" style="position:relative;right:5px"><img class="vimg" src="https://gravatar.loli.net/avatar/${MD5(get('mail'))}?d=robohash"><div style="overflow:hidden"><span>${get('nick')}</span> ： <a href="${get('url')}" class="comment-from">「${t}」</a></div></div><div class="vh" style="clear:both;padding-top:10px"><div class="comment-text">${get('comment')}</div><div class="vtime" style="float:right;margin:0">${timeAgo(get('insertedAt'))}</div></div></div>`
+            })
+            recentComment.querySelector('.vcards').insertAdjacentHTML('beforeend',res);
+            recentComment.querySelector('.vpage').style.display = count < total ? 'block' : 'none';
+            recentComment.style.display = 'block';
+          });
         });
-      });
+      }
+      recentComment.querySelector('button').onclick = () => getNComment();
+      getNComment();
     }
   }, 50);
 </script>
