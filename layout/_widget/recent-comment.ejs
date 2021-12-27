@@ -6,7 +6,7 @@
     <div class="vpage txt-center"><button type="button" class="vmore vbtn">加载更多...</button></div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/md5@2.3.0/dist/md5.min.js"></script>
+<%- js('js/md5.min.js') %>
 <script>
   const timeAgo = (date) => {
     let t = new Date().getTime() - date.getTime();

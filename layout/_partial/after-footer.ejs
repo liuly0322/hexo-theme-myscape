@@ -5,7 +5,7 @@
 <%- js('js/script') %>
 <%- js('js/local-search') %>
 <% if (is_home() || theme.mermaid.enable && page.mermaid) { %>
-<script src='https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js'></script>
+<script src='https://lib.baomitu.com/mermaid/8.12.1/mermaid.min.js'></script>
 <script>
   if (window.mermaid && document.querySelector('.mermaid')) {
     mermaid.initialize("");
@@ -23,7 +23,7 @@
 </script>
 <% } %>
 <% if(theme.valine.enable && theme.valine.appId && theme.valine.appKey){ %>
-  <%- js('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.Pure.min.js') %>
+  <%- js('https://lib.baomitu.com/valine/1.4.14/Valine.Pure.min.js') %>
 <script>
   var notify = '<%= theme.valine.notify %>' == true;
   var verify = '<%= theme.valine.verify %>' == true;
